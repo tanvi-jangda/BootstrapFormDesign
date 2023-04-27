@@ -1,0 +1,15 @@
+.form{
+    margin-top: 30px;
+     margin-bottom: 2%;
+}
+.submitBtn
+{
+    background-color: #de5dde;
+     border-color: #de5dde; 
+     color: white; 
+     height: 200%; 
+     width: 50%;
+}
+span{
+    color: red;
+}
