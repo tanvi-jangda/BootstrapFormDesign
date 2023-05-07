@@ -1,89 +1,158 @@
-<form class="form">
-<div class="row">
-  <div class="col-sm-2"></div>
-  <div class="col-sm-4">
-   <h2 style="color: #de5dde; text-align: center;"> Contact Our</h2>
-   <h2 style="text-align: center;">Customer Support Center</h2>
+<form class="form" [formGroup]="ContactDetailsForm">
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-4">
+     <h2 style="color: #de5dde; text-align: center;"> Contact Our</h2>
+     <h2 style="text-align: center;">Customer Support Center</h2>
+    </div>
+    <div class="col-sm-4">
+      <img src="/assets/Laptop.jpg" alt="laptop image">
+    </div>
+    <div class="col-sm-2"></div>
   </div>
-  <div class="col-sm-4">
-    <img src="/assets/Laptop.jpg" alt="laptop image">
+  
+  <div class="row">
+    <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+    <h4 style="font-weight: normal;">Contact Information</h4>
+    <h6 style="font-weight: lighter;">Fill out your contact information below.</h6>
+    </div>
+  
   </div>
-  <div class="col-sm-2"></div>
-</div>
-
-<div class="row">
-  <div class="col-sm-4"></div>
-      <div class="col-sm-4">
-  <h4 style="font-weight: normal;">Contact Information</h4>
-  <h6 style="font-weight: lighter;">Fill out your contact information below.</h6>
+  
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+      <label for="lblName">Name<span>*</span></label>
+      </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-sm-2"></div>
+      <div class="col-sm-3">
+      <input type="text" class="form-control" id="txtFName" formControlName="FName" [class.is-invalid] = "ContactDetailsForm.get('FName')?.invalid && ContactDetailsForm.get('FName')?.touched">
+      <small id="fNameHelp" class="form-text text-muted">First Name</small>
+      <div>
+        <small *ngIf="contactFormControl.FName.errors?.['required'] && contactFormControl.FName.touched" [class.d-none]="ContactDetailsForm.get('FName')?.valid" class="text-danger">First name is required</small>
+        <small *ngIf="contactFormControl.FName.errors?.['pattern'] && contactFormControl.FName.touched" [class.d-none]="ContactDetailsForm.get('FName')?.valid" class="text-danger">First Name should contain only alphabets.</small>
+      </div>  
+    </div>
+      <div class="col-sm-3">
+      <input type="text" class="form-control" id="txtLName" formControlName="LName" [class.is-invalid]="ContactDetailsForm.get('LName')?.invalid && ContactDetailsForm.get('LName')?.touched">
+      <small id="lNameHelp" class="form-text text-muted">Last Name</small>
+      <div>
+        <small *ngIf="contactFormControl.LName.errors?.['required'] && contactFormControl.LName.touched" [class.d-none]="ContactDetailsForm.get('LName')?.valid" class="text-danger">Last name is required</small>
+        <small *ngIf="contactFormControl.LName.errors?.['pattern'] && contactFormControl.LName.touched" [class.d-none]="ContactDetailsForm.get('LName')?.valid" class="text-danger">Last Name should contain only alphabets.</small>
+      </div> 
+      <div class="col-sm-2"></div>
+    </div>
   </div>
-
-</div>
-
+  </div>
+  
+  <div class="form-group"><br>
+      <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <label for="lblEmail">Email<span>*</span></label>
+        <input type="email" class="form-control" id="txtEmail" aria-describedby="emailHelp" formControlName="Email" [class.is-invalid]="ContactDetailsForm.get('Email')?.invalid && contactFormControl.Email.touched">
+        <div>
+          <small *ngIf="contactFormControl.Email.touched && contactFormControl.Email.errors?.['required']" [class.d-none]="ContactDetailsForm.get('Email')?.valid" class="text-danger">Email is required</small>
+          <small *ngIf="contactFormControl.Email.touched && contactFormControl.Email.errors?.['email']" class="text-danger">Enter valid email id</small>
+        </div>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+    </div>
+  
   <div class="form-group">
-    <div class="row">
+  <div class="row">
       <div class="col-sm-2"></div>
-      <div class="col-sm-4">
-    <label for="lblName">Name<span>*</span></label>
+      <div class="col-sm-8">
+      <label for="lblPhone">Phone<span>*</span></label>
+      <input type="text" class="form-control" id="txtPhone" aria-describedby="phoneHelp" formControlName="Phone" [class.is-invalid]="ContactDetailsForm.get('Phone')?.invalid && ContactDetailsForm.get('Phone')?.touched">
+      <div>
+        <small *ngIf="contactFormControl.Phone.errors?.['required'] && contactFormControl.Phone.touched" [class.d-none]="contactFormControl.Phone.valid" class="text-danger">Phone is required.</small>
+        <small *ngIf="contactFormControl.Phone.errors?.['pattern'] && contactFormControl.Phone.touched" [class.d-none]="contactFormControl.Phone.valid" class="text-danger">Phone should contain digits only.</small>
+        <small *ngIf="contactFormControl.Phone.errors?.['maxlength'] && contactFormControl.Phone.touched" [class.d-none]="contactFormControl.Phone.valid" class="text-danger">Phone should contain max 10 digits</small>
+      </div>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+  </div>
+  
+  <div class="form-group">
+      <div class="row">
+        <div class="col-sm-2"></div>
+     <div class="col-sm-8">
+      <label for="lblAddress">City<span>*</span></label>
+      <input type="text" class="form-control" id="txtCity" aria-describedby="addressHelp" formControlName="City" [class.is-invalid]="contactFormControl.City.touched && ContactDetailsForm.get('City')?.invalid">
+      <div>
+        <small *ngIf="contactFormControl.City.errors?.['required'] && contactFormControl.City.touched" [class.d-none]="contactFormControl.City.valid" class="text-danger">City is required.</small>
+        <small *ngIf="contactFormControl.City.errors?.['minlength'] && contactFormControl.City.touched" [class.d-none]="contactFormControl.City.valid" class="text-danger">Enter minimum 4 characters.</small>
+        <small *ngIf="contactFormControl.City.errors?.['pattern'] && contactFormControl.City.touched" [class.d-none]="contactFormControl.City.valid" class="text-danger">Enter only alphabets.</small>
+      </div>
+    </div>
+    <div class="col-sm-2"></div>
     </div>
     </div>
 
-    <div class="row">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-2"></div>
+     <div class="col-sm-8">
+      <label for="lblAddress">State</label>
+     <select class="form-control" formControlName="State" [class.is-invalid]="contactFormControl.State.touched && ContactDetailsForm.get('State')?.invalid">
+      <option>Select State</option>
+      <option *ngFor="let items of states">{{items}}</option>
+     </select>
+     <div>
+      <small *ngIf="contactFormControl.State.touched && contactFormControl.State.errors?.['stateNameInValid']" [class.d-none]="contactFormControl.State.valid" class="text-danger">Please select valid state name.</small>
+     </div>
+    </div>
+    <div class="col-sm-2"></div>
+    </div>
+    </div>
+  
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-2"></div>
+     <div class="col-sm-8">
+      <label for="lblAddress">ZIP Code</label>
+      <input type="text" class="form-control" id="txtZip" aria-describedby="addressHelp" formControlName="ZipCode"  [class.is-invalid]="contactFormControl.ZipCode.touched && ContactDetailsForm.get('ZipCode')?.invalid">
+      <div>
+        <small *ngIf="contactFormControl.ZipCode.errors?.['maxlength'] && contactFormControl.ZipCode.touched" [class.d-none]="contactFormControl.ZipCode.valid" class="text-danger">Max 5 characters allowed.</small>
+        <small *ngIf="contactFormControl.ZipCode.errors?.['pattern'] && contactFormControl.ZipCode.touched" [class.d-none]="contactFormControl.ZipCode.valid" class="text-danger">Enter only numbers.</small>
+      </div>
+    </div>
+    <div class="col-sm-2"></div>
+    </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-2"></div>
+     <div class="col-sm-8">
+      <label for="lblAddress">Comments</label>
+      <input type="text" class="form-control" id="txtComments" aria-describedby="addressHelp" formControlName="Comments" [class.is-invalid]="contactFormControl.Comments.touched && ContactDetailsForm.get('Comments')?.invalid">
+      <div>
+        <small *ngIf="contactFormControl.Comments.touched && contactFormControl.Comments.errors?.['minlength']" [class.d-none]="ContactDetailsForm.get('Comments')?.valid" class="text-danger">Enter minimum 30 characters.</small>
+      </div>
+    </div>
+    <div class="col-sm-2"></div>
+    </div>
+    </div>
+
+    <div class="form-group">  <br>
+      <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+      <button type="submit" class="submitBtn" (click)="btnSubmit()" [disabled]="!ContactDetailsForm.valid">SUBMIT FORM</button>
+      </div>
       <div class="col-sm-2"></div>
-    <div class="col-sm-3">
-    <input type="text" class="form-control" id="txtFName" >
-    <small id="fNameHelp" class="form-text text-muted">First Name</small>
+      </div>
     </div>
-    <div class="col-sm-3">
-    <input type="text" class="form-control" id="txtLName" >
-    <small id="lNameHelp" class="form-text text-muted">Last Name</small>
-    <div class="col-sm-2"></div>
-  </div>
-</div>
-</div>
-
-<div class="form-group"><br>
-    <div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-8">
-      <label for="lblEmail">Email<span>*</span></label>
-      <input type="email" class="form-control" id="txtEmail" aria-describedby="emailHelp">
-    </div>
-    <div class="col-sm-2"></div>
-  </div>
-  </div>
-
-<div class="form-group">
-<div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-8">
-    <label for="lblPhone">Phone<span>*</span></label>
-    <input type="text" class="form-control" id="txtPhone" aria-describedby="phoneHelp">
-  </div>
-  <div class="col-sm-2"></div>
-</div>
-</div>
-
-<div class="form-group">
-    <div class="row">
-      <div class="col-sm-2"></div>
-   <div class="col-sm-8">
-    <label for="lblAddress">Address<span>*</span></label>
-    <input type="text" class="form-control" id="txtAddress" aria-describedby="addressHelp">
-  </div>
-  <div class="col-sm-2"></div>
-  </div>
-  </div>
-
-  <div class="form-group">  <br>
-    <div class="row">
-      <div class="col-sm-4"></div>
-      <div class="col-sm-4">
-    <button type="submit" class="submitBtn">SUBMIT FORM</button>
-    </div>
-    <div class="col-sm-2"></div>
-    </div>
-  </div>
-
-</form>
-
+  
+  </form>
+  
+  
